@@ -10,7 +10,7 @@ function DadosPessoais({ aoEnviar }) {
   const [novidades, setNovidades] = useState(false);
   const [erros, setErros] = useState({ cpf: { valido: true, texto: "" }, nome: { valido: true, texto: "" } });
 
-  validacoes = useContext(ValidacoesCadastro)
+  const validacoes = useContext(ValidacoesCadastro)
 
   function validarCampos(event) {
     const { name, value } = event.target;
