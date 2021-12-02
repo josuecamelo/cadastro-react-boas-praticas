@@ -31,7 +31,10 @@ function FormularioCadastro({ aoEnviar, validarCPF }) {
 
   return (
     <>
-      { formularios[etapaAtual] }
+      { 
+        //ao inves de chamar a função formularioAtual(etapaAtual),  usar array, isso para evitar 300 mil ifs e cases
+        formularios[etapaAtual] 
+      }
     </>
   );
 }
