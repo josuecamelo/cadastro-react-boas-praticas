@@ -50,8 +50,8 @@ function DadosEntrega() {
         margin="normal"
         fullWidth
       />
-      <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+      <Button type="submit" fullWidth variant="contained" color="primary">
+        Finalizar Cadastro
       </Button>
     </form>
   );
