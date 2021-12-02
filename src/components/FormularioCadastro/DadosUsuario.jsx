@@ -1,22 +1,35 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 
 function DadosUsuario() {
   return (
     <form
-    onSubmit={(event) => {
-      event.preventDefault();
-    }}
-  >
-    <TextField
-      type="email"
-      id="email"
-      label="E-mail"
-      variant="outlined"
-      margin="normal"
-      fullWidth
-    />
-  </form>
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
+      <TextField
+        type="email"
+        id="email"
+        label="E-mail"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
+
+      <TextField
+        type="password"
+        id="senha"
+        label="Senha"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
+
+      <Button type="submit" variant="contained" color="primary">
+        Cadastrar
+      </Button>
+    </form>
   );
 }
 
