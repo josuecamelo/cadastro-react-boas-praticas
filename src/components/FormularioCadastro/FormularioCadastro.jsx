@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import DadosEntrega from "./DadosEntrega";
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 
 function FormularioCadastro({ aoEnviar, validarCPF }) {
-  const [etapaAtual, setEtapaAtual] =  useState(0)
+  const [etapaAtual, setEtapaAtual] = useState(0);
+  const [dadosColetados, setDadosColetados] = useState({});
+  useEffect(() => {
+    if (etapaAtual === formularios.length - 1) {
+      aoEnviar(dadosColetados);
+    }
+  });
 
   const formularios = [
-    <DadosUsuario aoEnviar={proximo} />,
-    <DadosPessoais aoEnviar={proximo} validarCPF={validarCPF} />,
-    <DadosEntrega aoEnviar={aoEnviar} />
+    <DadosUsuario aoEnviar={coletarDados} />,
+    <DadosPessoais aoEnviar={coletarDados} validarCPF={validarCPF} />,
+    <DadosEntrega aoEnviar={coletarDados} />,
+    <Typography variant="h5">Obrigado pelo Cadastro</Typography>,
   ];
 
-  function proximo(){
+  function coletarDados(dados) {
+    setDadosColetados({ ...dadosColetados, ...dados });
+    proximo();
+  }
+
+  function proximo() {
     setEtapaAtual(etapaAtual + 1);
   }
 
@@ -31,9 +44,23 @@ function FormularioCadastro({ aoEnviar, validarCPF }) {
 
   return (
     <>
-      { 
+      <Stepper activeStep={etapaAtual}>
+        <Step>
+          <StepLabel>Login</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Pessoal</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Entrega</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Finalização</StepLabel>
+        </Step>
+      </Stepper>
+      {
         //ao inves de chamar a função formularioAtual(etapaAtual),  usar array, isso para evitar 300 mil ifs e cases
-        formularios[etapaAtual] 
+        formularios[etapaAtual]
       }
     </>
   );
